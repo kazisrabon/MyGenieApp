@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/lightblue500</color>
+    <color name="colorPrimaryDark">@color/lightblue800</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="blue500">#2196F3</color>
+    <color name="blue10">#E3F2FD</color>
+    <color name="blue100">#BBDEFB</color>
+    <color name="blue200">#90CAF9</color>
+    <color name="blue300">#64B5F6</color>
+    <color name="blue400">#42A5F5</color>
+    <color name="blue600">#1E88E5</color>
+    <color name="blue700">#1976D2</color>
+    <color name="blue800">#1565C0</color>
+    <color name="blue900">#0D47A1</color>
+    <color name="blueA100">#82B1FF</color>
+    <color name="blueA200">#448AFF</color>
+    <color name="blueA400">#2979FF</color>
+    <color name="blueA700">#2962FF</color>
+
+    <color name="lightblue500">#03A9F4</color>
+    <color name="lightblue10">#E1F5FE</color>
+    <color name="lightblue100">#B3E5FC</color>
+    <color name="lightblue200">#81D4FA</color>
+    <color name="lightblue300">#4FC3F7</color>
+    <color name="lightblue400">#29B6F6</color>
+    <color name="lightblue600">#039BE5</color>
+    <color name="lightblue700">#0288D1</color>
+    <color name="lightblue800">#0277BD</color>
+    <color name="lightblue900">#01579B</color>
+    <color name="lightblueA100">#80D8FF</color>
+    <color name="lightblueA200">#40C4FF</color>
+    <color name="lightblueA400">#00B0FF</color>
+    <color name="lightblueA700">#0091EA</color>
+
+    <color name="color_white">#ffffff</color>
+    <color name="color_black">#000000</color>
+
+    <color name="trasparent_black">#66000000</color>
+    <color name="half_trasparent_black">#80000000</color>
+    <color name="bg_light">#FAFAFA</color>
+    <color name="btn1">#00AB7E</color>
+    <color name="btn2">#E22264</color>
+    <color name="btn3">#FAA634</color>
+    <color name="btn4">#424242 </color>
+
+    <!--<color name="">#</color>-->
+
+</resources>
