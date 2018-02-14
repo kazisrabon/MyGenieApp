@@ -2,13 +2,9 @@ package com.ks.mygenie;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class GeneRegActivity extends FragmentActivity implements View.OnClickListener{
 
@@ -27,12 +23,19 @@ public class GeneRegActivity extends FragmentActivity implements View.OnClickLis
 
     private void init() {
         btnGeneReg = (Button) findViewById(R.id.gene_register_btn);
+        btnGeneReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotoFP  = new Intent(getApplicationContext(), ConfirmationActivity.class);
+                startActivity(gotoFP);
+            }
+        });
 
         btnSignIn = (Button) findViewById(R.id.back_to_signin_btn);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotoFP  = new Intent(getApplicationContext(), MainActivity.class);
+                Intent gotoFP  = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(gotoFP);
             }
         });
@@ -57,7 +60,7 @@ public class GeneRegActivity extends FragmentActivity implements View.OnClickLis
                 break;
 
             case R.id.back_to_signin_btn:
-                Intent gotoSignIn  = new Intent(getApplicationContext(), MainActivity.class);
+                Intent gotoSignIn  = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(gotoSignIn);
                 break;
 

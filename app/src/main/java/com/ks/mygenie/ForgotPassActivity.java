@@ -2,12 +2,9 @@ package com.ks.mygenie;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import butterknife.OnClick;
 
 public class ForgotPassActivity extends FragmentActivity {
 
@@ -31,7 +28,7 @@ public class ForgotPassActivity extends FragmentActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotoFP  = new Intent(getApplicationContext(), MainActivity.class);
+                Intent gotoFP  = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(gotoFP);
             }
         });

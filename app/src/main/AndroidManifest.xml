@@ -48,9 +48,13 @@
         <activity
             android:name=".TutorialsActivity"
             android:theme="@style/WelcomeScreenTheme" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".GeneRegActivity" />
-        <activity android:name=".ForgotPassActivity"></activity>
+        <activity android:name=".ForgotPassActivity" />
+        <activity android:name=".ConfirmationActivity" />
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".SuccessfullActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

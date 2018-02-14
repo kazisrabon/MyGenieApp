@@ -21,26 +21,26 @@ public class TutorialsActivity extends WelcomeActivity {
                 .page(new BasicPage(R.drawable.image,
                         "Welcome",
                         "An Android library for onboarding, instructional screens, and more")
-                        .background(R.color.lightblue100)
+                        .background(R.color.primary100)
                 )
 
                 .page(new BasicPage(R.drawable.image,
                         "Simple to use",
                         "Add a welcome screen to your app with only a few lines of code.")
-                        .background(R.color.lightblue300)
+                        .background(R.color.primary300)
                 )
 
                 .page(new ParallaxPage(R.layout.parallax_example,
                         "Easy parallax",
                         "Supply a layout and parallax effects will automatically be applied")
                         .lastParallaxFactor(2f)
-                        .background(R.color.lightblue500)
+                        .background(R.color.primary500)
                 )
 
                 .page(new BasicPage(R.drawable.image,
                         "Customizable",
                         "All elements of the welcome screen can be customized easily.")
-                        .background(R.color.lightblue700)
+                        .background(R.color.primary700)
                 )
 
                 .swipeToDismiss(true)

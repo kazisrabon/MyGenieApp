@@ -55,13 +55,13 @@ public class SplashActivity extends AwesomeSplash {
 
     @Override
     public void animationsFinished() {
-        //wait 5 sec and then go back to MainActivity
+        //wait 5 sec and then go back to LoginActivity
         final Activity a = this;
         WeakHandler handler = new WeakHandler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ChangeActivityHelper.changeActivity(a, MainActivity.class, true);
+                ChangeActivityHelper.changeActivity(a, LoginActivity.class, true);
             }
         }, Constants.SPLASH_DELAY);
     }
@@ -69,6 +69,6 @@ public class SplashActivity extends AwesomeSplash {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ChangeActivityHelper.changeActivity(this, MainActivity.class, true);
+        ChangeActivityHelper.changeActivity(this, LoginActivity.class, true);
     }
 }

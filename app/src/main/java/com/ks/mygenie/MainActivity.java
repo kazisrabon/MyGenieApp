@@ -1,79 +1,125 @@
 package com.ks.mygenie;
 
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.stephentuso.welcome.WelcomeHelper;
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-import butterknife.Unbinder;
+import butterknife.ButterKnife;
 
-/**
- * Created by DOLPHIN on 12-Oct-17.
- */
+public class MainActivity extends DrawerActivity {
 
-public class MainActivity extends FragmentActivity{
-
-    WelcomeHelper tutorialsWelcomeScreen;
-    Button btnSignUp;
-    Button btnSignIn;
-    Button btnForgotP;
-    Button btnGuest;
-
-//    private Unbinder unbinder;
+    @BindView(R.id.materialViewPager)
+    MaterialViewPager mViewPager;
+//    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("");
+        ButterKnife.bind(this);
 
-        tutorialsWelcomeScreen = new WelcomeHelper(this, TutorialsActivity.class);
-        tutorialsWelcomeScreen.show(savedInstanceState);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        final Toolbar toolbar = mViewPager.getToolbar();
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
         }
 
-        init();
-    }
+        mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
-    private void init() {
-        btnSignIn = (Button) findViewById(R.id.sign_in_btn);
-
-        btnSignUp = (Button) findViewById(R.id.goto_reg_btn);
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent generegistration  = new Intent(getApplicationContext(), GeneRegActivity.class);
-                startActivity(generegistration);
+            public Fragment getItem(int position) {
+                switch (position % 4) {
+                    //case 0:
+                    //    return RecyclerViewFragment.newInstance();
+                    //case 1:
+                    //    return RecyclerViewFragment.newInstance();
+                    //case 2:
+                    //    return WebViewFragment.newInstance();
+                    default:
+                        return RecyclerViewFragment.newInstance();
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 4;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                switch (position % 4) {
+                    case 0:
+                        return "Selection";
+                    case 1:
+                        return "Actualités";
+                    case 2:
+                        return "Professionnel";
+                    case 3:
+                        return "Divertissement";
+                }
+                return "";
             }
         });
 
-        btnForgotP = (Button) findViewById(R.id.forgotP_btn);
-        btnForgotP.setOnClickListener(new View.OnClickListener() {
+        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
-            public void onClick(View v) {
-                Intent gotoFP  = new Intent(getApplicationContext(), ForgotPassActivity.class);
-                startActivity(gotoFP);
+            public HeaderDesign getHeaderDesign(int page) {
+                switch (page) {
+                    case 0:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.green,
+                                "http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/06/android_google_moutain_google_now_1920x1080_wallpaper_Wallpaper-HD_2560x1600_www.paperhi.com_-640x400.jpg");
+                    case 1:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.blue,
+                                "http://www.hdiphonewallpapers.us/phone-wallpapers/540x960-1/540x960-mobile-wallpapers-hd-2218x5ox3.jpg");
+                    case 2:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.cyan,
+                                "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg");
+                    case 3:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.red,
+                                "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                }
+
+                //execute others actions if needed (ex : modify your header logo)
+
+                return null;
             }
         });
 
-        btnGuest = (Button) findViewById(R.id.guest_sign_in_btn);
-    }
+        mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
+        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        tutorialsWelcomeScreen.onSaveInstanceState(outState);
+        final View logo = findViewById(R.id.logo_white);
+        if (logo != null) {
+            logo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mViewPager.notifyHeaderChanged();
+                    Toast.makeText(getApplicationContext(), "Yes, the title is clickable", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
